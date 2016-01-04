@@ -1,4 +1,4 @@
-# Arduino library to work with shift register-programmable LED lamps - Drawing Canvas
+# Arduino library to work with shift register-programmable LED lamps
 
 ## Supported LED lamps
 
