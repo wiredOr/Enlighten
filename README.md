@@ -7,10 +7,7 @@
 
 ## Build system requirements
 
-* [Arduino](https://www.arduino.cc/en/Main/Software) (v1.6 or later)
-* [Eclipse IDE](http://www.eclipse.org/home/index.php) (Mars or later)
-* [Eclipse CDT Plugin (C/C++ Development Tooling)](https://eclipse.org/cdt/) (v8.7 or later)
-* [AVR Eclipse Plugin](http://avr-eclipse.sourceforge.net/wiki/index.php/The_AVR_Eclipse_Plugin) (v2.4 or later)
+* [Arduino](https://www.arduino.cc/en/Main/Software) (tested with v1.6.7)
 
 ## Reference
 
@@ -19,3 +16,4 @@
 ## License
 
 MIT style. See [here](./LICENSE).
+

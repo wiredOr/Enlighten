@@ -1,6 +1,8 @@
+#
+# Linux editor backup files
+#
+
 *~
-Debug/
-Release/
 
 #
 # From <https://github.com/github/gitignore/blob/master/C%2B%2B.gitignore>
@@ -34,4 +36,3 @@ Release/
 *.exe
 *.out
 *.app
-
