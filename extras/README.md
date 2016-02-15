@@ -9,3 +9,7 @@ The folder "eagle" contains schematics, library and board files for the required
 ## Timing
 
 The file "timing.txt" contains electrical and timing data, based on the datasheets of the PL9823 and WS2812-B shift register-programmable LED lamps.
+
+## Bluetooth
+
+This project uses the HC-05 Bluetooth module from Guangzhou HC Information Technology Co., Ltd., mounted on the so-called "gomcu" baseplate ("gomcu CZ-HC-05"). The folder "bluetooth" contains documentation about the HC-05 Bluetooth module.
