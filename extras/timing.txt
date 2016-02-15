@@ -1,0 +1,32 @@
+PL9823-F5
+-----------------------------------------------------------------------------------------
+Value       Min         Typ         Max         Description
+-----------------------------------------------------------------------------------------
+t0H  [us]   0.2         0.35        0.5         From datasheet
+t0L  [us]   1,21        1.36        1,51        From datasheet
+t1H  [us]   1,21        1.36        1,51        From datasheet
+t1L  [us]   0.2         0.35        0.5         From datasheet
+
+tPWM [us]   1,4         1,7         2,0         Includes high and low phase
+fPWM [KHz]  500,0       588,2       714,3       Includes high and low phase
+R    [1]                4 : 1                   H/L phase ratio
+tRES [us]   50,0                                Active low
+tRGB [us]   33,6        40,8        48,0        Program a single RGB LED
+
+
+
+WS2812-B
+-----------------------------------------------------------------------------------------
+Value       Min         Typ         Max         Description
+-----------------------------------------------------------------------------------------
+t0H  [us]   0.25        0.40        0.55        From datasheet
+t0L  [us]   0.70        0.85        1.00        From datasheet
+t1H  [us]   0.65        0.80        0.95        From datasheet
+t1L  [us]   0.30        0.45        0.60        From datasheet
+
+tPWM [us]   0,95        1,25        1,55        Includes high and low phase
+fPWM [KHz]  645,2       800,0       1.052,6     Includes high and low phase
+R    [1]                2 : 1                   H/L phase ratio
+tRES [us]   50,0                                Active low
+tRGB [us]   22,8        30,0        37,2        Program a single RGB LED
+

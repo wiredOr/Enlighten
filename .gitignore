@@ -1,4 +1,10 @@
 #
+# CadSoft Eagle
+#
+
+*.lck
+
+#
 # Editor backup files
 #
 
