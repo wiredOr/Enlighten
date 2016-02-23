@@ -7,11 +7,25 @@
 #######################################
 
 EnlightenCanvas	KEYWORD1
+EnlightenBT	KEYWORD1
+EnlightenBTMode	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
+turnOn	KEYWORD2
+turnOff	KEYWORD2
+getStream	KEYWORD2
+bridgeStream	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
 #######################################
 # Constants (LITERAL1)
 #######################################
+
+ENL_BT_MODE_AT	LITERAL1
+ENL_BT_MODE_NORMAL	LITERAL1

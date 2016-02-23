@@ -8,6 +8,8 @@
 #ifndef ENLIGHTENCANVAS_H_
 #define ENLIGHTENCANVAS_H_
 
+#include <Arduino.h>
+
 class EnlightenCanvas {
 public:
 	EnlightenCanvas();
