@@ -10,6 +10,9 @@
 
 #include <Arduino.h>
 
+#define ENLIGHTEN_BT_MAX_RESPONSE_ITEMS	16
+#define ENLIGHTEN_BT_MAX_RESPONSE_SIZE	256
+
 class EnlightenBT {
 
 public:
@@ -22,14 +25,21 @@ public:
 	EnlightenBT();
 	virtual ~EnlightenBT();
 
+	// Turn BT module on/off:
 	void turnOn( Mode mode, unsigned baud = 38400 );
 	void turnOff();
 
+	// Send / receive data through the BT module:
 	Stream& getStream();
 	void bridgeStream( Stream& peer );
 
 private:
 	Mode _mode;
+	char** _responseItems;
+	char* _response;
+
+	void allocResponseBuffer();
+	void freeResponseBuffer();
 
 };
 

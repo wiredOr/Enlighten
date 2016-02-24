@@ -5,14 +5,22 @@
  *      Author: awurf
  */
 
+#include <avr/pgmspace.h>
+
 #include "EnlightenBT.h"
 
 #define PIN_BT_ON	11	// 0 = ON, 1 = OFF
 #define PIN_BT_KEY	10	// 1 = Command mode, 0 = BT mode
 
 #define BT_SERIAL	Serial1
+#define BT_ON_OFF_DELAY_MS	250
+#define BT_OFF_ON_DELAY_MS	250
 
-EnlightenBT::EnlightenBT() : _mode( Mode::NA ) {
+EnlightenBT::EnlightenBT() 
+: _mode( Mode::NA ) 
+, _response(0)
+, _responseItems(0)
+{
 	digitalWrite( PIN_BT_ON, HIGH );
 	digitalWrite( PIN_BT_KEY, LOW );
 
@@ -26,13 +34,15 @@ EnlightenBT::~EnlightenBT() {
 
 void EnlightenBT::turnOn( Mode mode, unsigned baud /*= 38400*/ ) {
 	if( (this->_mode == Mode::NA) && (mode != Mode::NA) ) {
-		this->_mode = mode;
-
-		digitalWrite( PIN_BT_KEY, (this->_mode == Mode::COMMAND ? 1 : 0) );
+		digitalWrite( PIN_BT_KEY, (mode == Mode::COMMAND ? 1 : 0) );
 		digitalWrite( PIN_BT_ON, LOW );
-		delay(100);
+		delay(BT_OFF_ON_DELAY_MS);
+
+		this->allocResponseBuffer();
 
 		BT_SERIAL.begin( baud );
+
+		this->_mode = mode;
 	}
 }
 
@@ -40,8 +50,12 @@ void EnlightenBT::turnOff() {
 	if( this->_mode != Mode::NA ) {
 		BT_SERIAL.end();
 
+		this->freeResponseBuffer();
+
 		digitalWrite( PIN_BT_ON, HIGH );
-		delay(100);
+		delay(BT_ON_OFF_DELAY_MS);
+
+		this->_mode = Mode::NA;
 	}
 }
 
@@ -59,4 +73,24 @@ void EnlightenBT::bridgeStream( Stream& peer ) {
 		peer.write(bt.read());
 	}
 
+}
+
+void EnlightenBT::allocResponseBuffer() {
+	if( !this->_response ) {
+		this->_response = new char[ENLIGHTEN_BT_MAX_RESPONSE_SIZE];
+	}
+	if( !this->_responseItems ) {
+		this->_responseItems = new char*[ENLIGHTEN_BT_MAX_RESPONSE_ITEMS];
+	}
+}
+
+void EnlightenBT::freeResponseBuffer() {
+	if( this->_response ) {
+		delete[] this->_response;
+		this->_response = 0;
+	}
+	if( this->_responseItems ) {
+		delete[] this->_responseItems;
+		this->_responseItems = 0;
+	}
 }
