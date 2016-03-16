@@ -6,10 +6,10 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-EnlightenCanvas	KEYWORD1
-EnlightenBT	KEYWORD1
 EnlightenBT	KEYWORD1
 Mode	KEYWORD1
+
+EnlightenLedChain	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

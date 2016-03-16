@@ -1,5 +1,5 @@
 #include <EnlightenBT.h>
-#include <EnlightenCanvas.h>
+#include <EnlightenLedChain.h>
 
 EnlightenBT bt;
 
