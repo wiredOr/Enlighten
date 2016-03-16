@@ -10,6 +10,7 @@ EnlightenBT	KEYWORD1
 Mode	KEYWORD1
 
 EnlightenLedChain	KEYWORD1
+LedType	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -34,3 +35,6 @@ command	KEYWORD2
 NA	LITERAL1
 NORMAL	LITERAL1
 COMMAND	LITERAL1
+
+PL9823	LITERAL1
+WS2812B	LITERAL1

@@ -8,7 +8,8 @@
 #include <string.h>
 
 #include "EnlightenLedChain.h"
-#include "impl/LedChainImpl.h"
+#include "impl/LedChainImpl_PL9823.h"
+#include "impl/LedChainImpl_WS2812B.h"
 
 /////////////////////////////////////////////////
 
@@ -25,7 +26,12 @@ EnlightenLedChain::EnlightenLedChain( LedType ledType, unsigned numLeds, unsigne
 	::memset( this->_bytes, 0, size );
 
 	// TODO: Construct LED chain implementation based on LED type
-	this->_impl = new LedChainImpl( this );
+	if( this->_ledType == LedType::PL9823 ) {
+		this->_impl = new LedChainImpl_PL9823( this );
+	}
+	else if( this->_ledType == LedType::WS2812B ) {
+		this->_impl = new LedChainImpl_WS2812B( this );
+	}
 }
 
 EnlightenLedChain::~EnlightenLedChain() {
@@ -35,4 +41,8 @@ EnlightenLedChain::~EnlightenLedChain() {
 
 void EnlightenLedChain::SetCurrentBuffer( unsigned buffer ) {
 	this->_currentBuffer = ( buffer < this->_numBuffers ? buffer : this->_numBuffers - 1 );
+}
+
+void EnlightenLedChain::FlingCurrentBuffer() {
+	this->_impl->FlingCurrentBuffer();
 }

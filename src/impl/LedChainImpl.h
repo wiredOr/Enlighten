@@ -19,6 +19,8 @@ public:
 	LedChainImpl( EnlightenLedChain* ledChain );
 	virtual ~LedChainImpl();
 
+	virtual void FlingCurrentBuffer() = 0;
+
 protected:
 
 	const EnlightenLedChain *LedChain() const {

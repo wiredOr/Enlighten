@@ -18,18 +18,8 @@ public:
 
 	// LED type (tuple order, timing etc.)
 	enum class LedType {
+		PL9823,
 		WS2812B
-	};
-
-	// RGB tupel type
-	union RGBTupel {
-		struct {
-			unsigned char R;
-			unsigned char G;
-			unsigned char B;
-			unsigned char X;
-		} components;
-		unsigned long compound;
 	};
 
 	//
@@ -62,7 +52,13 @@ public:
 		return( this->_currentBuffer );
 	}
 
+	const unsigned char* Bytes() const {
+		return( this->_bytes );
+	}
+
 	void SetCurrentBuffer( unsigned buffer );
+
+	void FlingCurrentBuffer();
 
 private:
 
