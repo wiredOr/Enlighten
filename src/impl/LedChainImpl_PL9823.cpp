@@ -89,8 +89,6 @@ void LedChainImpl_PL9823::FlingCurrentBuffer() {
 		"ldi		%[byte], 0xc8				\n\t"	//	1
 		"L_wait:								\n\t"
 		"nop									\n\t"	//	1
-		"nop									\n\t"	//	1
-		"nop									\n\t"	//	1
 		"dec		%[byte]						\n\t"	//	1
 		"brne		L_wait						\n\t"	//	1 / 2
 
