@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "EnlightenLedChain.h"
+#include "impl/LedChainImpl.h"
 #include "impl/LedChainImpl_PL9823.h"
 #include "impl/LedChainImpl_WS2812B.h"
 
@@ -20,6 +21,9 @@ EnlightenLedChain::EnlightenLedChain( LedType ledType, unsigned numLeds, unsigne
 , _currentBuffer( 0 )
 , _bytes( 0 )
 { 
+	digitalWrite( PIN_DATA, LOW );
+	pinMode( PIN_DATA, OUTPUT );
+
 	const auto size = this->_numBuffers * this->_numLeds * 3;
 
 	this->_bytes = new unsigned char[ size ];
