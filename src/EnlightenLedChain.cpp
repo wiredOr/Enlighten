@@ -26,7 +26,7 @@ EnlightenLedChain::EnlightenLedChain( LedType ledType, unsigned numLeds, unsigne
 
 	const auto size = this->_numBuffers * this->_numLeds * 3;
 
-	this->_bytes = new unsigned char[ size ];
+	this->_bytes = new uint8_t[ size ];
 	::memset( this->_bytes, 0, size );
 
 	// TODO: Construct LED chain implementation based on LED type
@@ -47,6 +47,6 @@ void EnlightenLedChain::SetCurrentBuffer( unsigned buffer ) {
 	this->_currentBuffer = ( buffer < this->_numBuffers ? buffer : this->_numBuffers - 1 );
 }
 
-void EnlightenLedChain::FlingCurrentBuffer() {
+void EnlightenLedChain::FlingCurrentBuffer() const {
 	this->_impl->FlingCurrentBuffer();
 }

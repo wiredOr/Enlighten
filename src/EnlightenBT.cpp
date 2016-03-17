@@ -16,8 +16,8 @@
 
 EnlightenBT::EnlightenBT() 
 : _mode( Mode::NA ) 
-, _response(0)
 , _responseItems(0)
+, _response(0)
 {
 	digitalWrite( PIN_BT_ON, HIGH );
 	digitalWrite( PIN_BT_KEY, LOW );

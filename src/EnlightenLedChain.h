@@ -52,13 +52,13 @@ public:
 		return( this->_currentBuffer );
 	}
 
-	const unsigned char* Bytes() const {
+	const uint8_t *Bytes() const {
 		return( this->_bytes );
 	}
 
 	void SetCurrentBuffer( unsigned buffer );
 
-	void FlingCurrentBuffer();
+	void FlingCurrentBuffer() const;
 
 private:
 
@@ -66,7 +66,7 @@ private:
 	unsigned _numLeds;
 	unsigned _numBuffers;
 	unsigned _currentBuffer;
-	unsigned char* _bytes;
+	uint8_t *_bytes;
 	LedChainImpl *_impl;
 };
 

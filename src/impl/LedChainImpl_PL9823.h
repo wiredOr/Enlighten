@@ -18,7 +18,16 @@ public:
 
 	LedChainImpl_PL9823( EnlightenLedChain* ledChain );
 
-	virtual void FlingCurrentBuffer() override;
+	virtual void FlingCurrentBuffer() const override;
+	virtual uint8_t R( unsigned led ) const override;
+	virtual uint8_t G( unsigned led ) const override;
+	virtual uint8_t B( unsigned led ) const override;
+	virtual	uint32_t RGB( unsigned led ) const override;
+
+	virtual void SetR( unsigned led, uint8_t value ) override;
+	virtual void SetG( unsigned led, uint8_t value ) override;
+	virtual void SetB( unsigned led, uint8_t value ) override;
+	virtual	void SetRGB( unsigned led, uint32_t value ) override;
 
 };
 
