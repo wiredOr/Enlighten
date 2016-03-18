@@ -10,6 +10,28 @@
 
 #include <Arduino.h>
 
+#define ENLIGHTEN_R(rgb)					\
+ 	static_cast<uint8_t>( 					\
+ 		static_cast<uint32_t>( rgb ) >> 16 	\
+ 	)
+
+#define ENLIGHTEN_G(rgb)					\
+ 	static_cast<uint8_t>( 					\
+ 		static_cast<uint32_t>( rgb ) >> 8 	\
+ 	)
+
+#define ENLIGHTEN_B(rgb)					\
+ 	static_cast<uint8_t>( 					\
+ 		static_cast<uint32_t>( rgb )	 	\
+ 	)
+
+#define ENLIGHTEN_RGB(r,g,b)				\
+ 	static_cast<uint32_t> (					\
+ 		  static_cast<uint32_t>( r ) << 16	\
+ 		| static_cast<uint32_t>( g ) << 8	\
+ 		| static_cast<uint32_t>( b ) 		\
+ 	)
+
 class LedChainImpl;
 
 class EnlightenLedChain {
@@ -40,33 +62,58 @@ public:
 	// Member access
 	//
 
-	unsigned NumLeds() const {
+	inline unsigned numLeds() const {
 		return( this->_numLeds );
 	}
 
-	unsigned NumBuffers() const {
+	inline unsigned numBuffers() const {
 		return( this->_numBuffers );
 	}
 
-	unsigned CurrentBuffer() const {
+	inline unsigned currentBuffer() const {
 		return( this->_currentBuffer );
 	}
 
-	const uint8_t *Bytes() const {
+	inline const uint8_t *bytes() const {
 		return( this->_bytes );
 	}
 
-	void SetCurrentBuffer( unsigned buffer );
+	inline uint8_t *bytes() {
+		return( this->_bytes );
+	}
 
-	void FlingCurrentBuffer() const;
+	inline const uint8_t *currentBufferBytes() const {
+		return( this->_currentBufferBytes );
+	}
+
+	inline uint8_t *currentBufferBytes() {
+		return( this->_currentBufferBytes );
+	}
+
+	void setCurrentBuffer( unsigned buffer );
+
+	void flingCurrentBuffer() const;
+
+	uint8_t r( unsigned led ) const;
+	uint8_t g( unsigned led ) const;
+	uint8_t b( unsigned led ) const;
+	uint32_t rgb( unsigned led ) const;
+
+	void setR( unsigned led, uint8_t value );
+	void setG( unsigned led, uint8_t value );
+	void setB( unsigned led, uint8_t value );
+	void setRGB( unsigned led, uint32_t value );
 
 private:
+
+	void UpdateCurrentBufferBytes();
 
 	LedType _ledType;
 	unsigned _numLeds;
 	unsigned _numBuffers;
 	unsigned _currentBuffer;
 	uint8_t *_bytes;
+	uint8_t *_currentBufferBytes;
 	LedChainImpl *_impl;
 };
 

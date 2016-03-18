@@ -21,24 +21,24 @@ public:
 	LedChainImpl( EnlightenLedChain* ledChain );
 	virtual ~LedChainImpl();
 
-	virtual void FlingCurrentBuffer() const = 0;
-	virtual uint8_t R( unsigned led ) const = 0;
-	virtual uint8_t G( unsigned led ) const = 0;
-	virtual uint8_t B( unsigned led ) const = 0;
-	virtual	uint32_t RGB( unsigned led ) const = 0;
+	virtual void flingCurrentBuffer() const = 0;
+	virtual uint8_t r( unsigned led ) const = 0;
+	virtual uint8_t g( unsigned led ) const = 0;
+	virtual uint8_t b( unsigned led ) const = 0;
+	virtual	uint32_t rgb( unsigned led ) const = 0;
 
-	virtual void SetR( unsigned led, uint8_t value ) = 0;
-	virtual void SetG( unsigned led, uint8_t value ) = 0;
-	virtual void SetB( unsigned led, uint8_t value ) = 0;
-	virtual	void SetRGB( unsigned led, uint32_t value ) = 0;
+	virtual void setR( unsigned led, uint8_t value ) = 0;
+	virtual void setG( unsigned led, uint8_t value ) = 0;
+	virtual void setB( unsigned led, uint8_t value ) = 0;
+	virtual	void setRGB( unsigned led, uint32_t value ) = 0;
 
 protected:
 
-	const EnlightenLedChain *LedChain() const {
+	const EnlightenLedChain *ledChain() const {
 		return( this->_ledChain );
 	}
 
-	EnlightenLedChain *LedChain() {
+	EnlightenLedChain *ledChain() {
 		return( this->_ledChain );
 	}
 

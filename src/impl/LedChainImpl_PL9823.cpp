@@ -8,18 +8,18 @@
 #include "../EnlightenLedChain.h"
 #include "LedChainImpl_PL9823.h"
 
-#define	OFFSET_R	(1)
-#define	OFFSET_G	(0)
+#define	OFFSET_R	(0)
+#define	OFFSET_G	(1)
 #define	OFFSET_B	(2)
 
 LedChainImpl_PL9823::LedChainImpl_PL9823( EnlightenLedChain* ledChain )
 : LedChainImpl( ledChain )
 { }
 
-void LedChainImpl_PL9823::FlingCurrentBuffer() const {
-	const auto ledChain = this->LedChain();
-	const auto bufferSize = static_cast<uint16_t>( 3 * ledChain->NumLeds() );
-	__attribute__((unused)) const auto bufferStart = ledChain->Bytes() + ( ledChain->CurrentBuffer() * bufferSize );
+void LedChainImpl_PL9823::flingCurrentBuffer() const {
+	const auto ledChain = this->ledChain();
+	const auto bufferSize = static_cast<uint16_t>( 3 * ledChain->numLeds() );
+	__attribute__((unused)) const auto bufferStart = ledChain->currentBufferBytes();
 	__attribute__((unused)) uint8_t sreg, mask, byte;
 
 	asm volatile(
@@ -110,74 +110,57 @@ void LedChainImpl_PL9823::FlingCurrentBuffer() const {
 	);
 }
 
-uint8_t LedChainImpl_PL9823::R( unsigned led ) const {
-	const auto ledChain = this->LedChain();
-	if( led >= ledChain->NumLeds() ) {
-		return( 0 );
-	}
-
-	const auto pixel = ( ledChain->Bytes() + ( ledChain->CurrentBuffer() * 3 * ledChain->NumLeds() ) ) + 3 * led;
+uint8_t LedChainImpl_PL9823::r( unsigned led ) const {
+	const auto ledChain = this->ledChain();
+	const auto pixel = ledChain->currentBufferBytes() + 3 * led;
 
 	return( *(pixel + OFFSET_R) );
 }
 
-uint8_t LedChainImpl_PL9823::G( unsigned led ) const {
-	const auto ledChain = this->LedChain();
-	if( led >= ledChain->NumLeds() ) {
-		return( 0 );
-	}
-
-	const auto pixel = ( ledChain->Bytes() + ( ledChain->CurrentBuffer() * 3 * ledChain->NumLeds() ) ) + 3 * led;
+uint8_t LedChainImpl_PL9823::g( unsigned led ) const {
+	const auto ledChain = this->ledChain();
+	const auto pixel = ledChain->currentBufferBytes() + 3 * led;
 
 	return( *(pixel + OFFSET_G) );
 }
 
-uint8_t LedChainImpl_PL9823::B( unsigned led ) const {
-	const auto ledChain = this->LedChain();
-	if( led >= ledChain->NumLeds() ) {
-		return( 0 );
-	}
-
-	const auto pixel = ( ledChain->Bytes() + ( ledChain->CurrentBuffer() * 3 * ledChain->NumLeds() ) ) + 3 * led;
+uint8_t LedChainImpl_PL9823::b( unsigned led ) const {
+	const auto ledChain = this->ledChain();
+	const auto pixel = ledChain->currentBufferBytes() + 3 * led;
 
 	return( *(pixel + OFFSET_B) );
 }
 
-uint32_t LedChainImpl_PL9823::RGB( unsigned led ) const {
-	const auto ledChain = this->LedChain();
-	if( led >= ledChain->NumLeds() ) {
-		return( 0 );
-	}
+uint32_t LedChainImpl_PL9823::rgb( unsigned led ) const {
+	const auto ledChain = this->ledChain();
+	const auto pixel = ledChain->currentBufferBytes() + 3 * led;
 
-	const auto pixel = ( ledChain->Bytes() + ( ledChain->CurrentBuffer() * 3 * ledChain->NumLeds() ) ) + 3 * led;
-
-	return( 
-		static_cast<uint32_t>( *(pixel + OFFSET_R) ) << 16 | 
-		static_cast<uint32_t>( *(pixel + OFFSET_G) ) << 8 | 
-		static_cast<uint32_t>( *(pixel + OFFSET_B) ) 
-	);
+	return( ENLIGHTEN_RGB( *(pixel + OFFSET_R), *(pixel + OFFSET_G), *(pixel + OFFSET_B) ) );
 }
 
-void LedChainImpl_PL9823::SetR( unsigned led, uint8_t value ) {
-	(void)led;
-	(void)value;
-	// TODO: Implement
+void LedChainImpl_PL9823::setR( unsigned led, uint8_t value ) {
+	const auto ledChain = this->ledChain();
+
+	*( ( ledChain->currentBufferBytes() + 3 * led ) + OFFSET_R ) = value;
 }
 
-void LedChainImpl_PL9823::SetG( unsigned led, uint8_t value ) {
-	(void)led;
-	(void)value;
-	// TODO: Implement
+void LedChainImpl_PL9823::setG( unsigned led, uint8_t value ) {
+	const auto ledChain = this->ledChain();
+
+	*( ( ledChain->currentBufferBytes() + 3 * led ) + OFFSET_R ) = value;
 }
 
-void LedChainImpl_PL9823::SetB( unsigned led, uint8_t value ) {
-	(void)led;
-	(void)value;
-	// TODO: Implement
+void LedChainImpl_PL9823::setB( unsigned led, uint8_t value ) {
+	const auto ledChain = this->ledChain();
+
+	*( ( ledChain->currentBufferBytes() + 3 * led ) + OFFSET_R ) = value;
 }
 
-void LedChainImpl_PL9823::SetRGB( unsigned led, uint32_t value ) {
-	(void)led;
-	(void)value;
-	// TODO: Implement
+void LedChainImpl_PL9823::setRGB( unsigned led, uint32_t value ) {
+	const auto ledChain = this->ledChain();
+
+	auto pixel = ledChain->currentBufferBytes() + 3 * led;
+	*(pixel + OFFSET_R) = ENLIGHTEN_R( value );
+	*(pixel + OFFSET_G) = ENLIGHTEN_G( value );
+	*(pixel + OFFSET_B) = ENLIGHTEN_B( value );
 }

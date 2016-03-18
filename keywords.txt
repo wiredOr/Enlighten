@@ -24,13 +24,33 @@ getResponseBuffer	KEYWORD2
 getResponseItems	KEYWORD2
 command	KEYWORD2
 
+numLeds	KEYWORD2
+numBuffers	KEYWORD2
+currentBuffer	KEYWORD2
+bytes	KEYWORD2
+currentBufferBytes	KEYWORD2
+setCurrentBuffer	KEYWORD2
+flingCurrentBuffer	KEYWORD2
+r	KEYWORD2
+g	KEYWORD2
+b	KEYWORD2
+rgb	KEYWORD2
+setR	KEYWORD2
+setG	KEYWORD2
+setB	KEYWORD2
+setRGB	KEYWORD2
+
+
 #######################################
 # Instances (KEYWORD2)
 #######################################
 
 #######################################
-# Constants (LITERAL1)
+# Constants and enums (LITERAL1)
 #######################################
+
+ENLIGHTEN_BT_MAX_RESPONSE_ITEMS	LITERAL1
+ENLIGHTEN_BT_MAX_RESPONSE_SIZE	LITERAL1
 
 NA	LITERAL1
 NORMAL	LITERAL1
@@ -38,3 +58,8 @@ COMMAND	LITERAL1
 
 PL9823	LITERAL1
 WS2812B	LITERAL1
+
+ENLIGHTEN_R	LITERAL1
+ENLIGHTEN_G	LITERAL1
+ENLIGHTEN_B	LITERAL1
+ENLIGHTEN_RGB	LITERAL1
