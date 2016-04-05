@@ -10,9 +10,9 @@
 
 #include <Arduino.h>
 
-#define PIN_DATA	9	// 0 = LOW, 1 = HIGH
+#include "../EnlightenLedChain.h"
 
-class EnlightenLedChain;
+#define PIN_DATA	9	// 0 = LOW, 1 = HIGH
 
 class LedChainImpl {
 

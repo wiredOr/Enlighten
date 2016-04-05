@@ -5,18 +5,27 @@
  *      Author: awurf
  */
 
-#include "../EnlightenLedChain.h"
 #include "LedChainImpl_PL9823.h"
 
-#define	OFFSET_R	(0)
-#define	OFFSET_G	(1)
-#define	OFFSET_B	(2)
+#define	OFFSET_R	0
+#define	OFFSET_G	1
+#define	OFFSET_B	2
 
 LedChainImpl_PL9823::LedChainImpl_PL9823( EnlightenLedChain* ledChain )
 : LedChainImpl( ledChain )
 { }
 
 void LedChainImpl_PL9823::flingCurrentBuffer() const {
+	//
+	//	fCPU = 16e6 [Hz] (Arduino Micro)
+	//	fPWM_MAX = 714e3 [Hz]
+	//	=> nCYC_MIN = 23 [cycles]
+	//	rONE = 4:1 (H:L)
+	//	rZERO = 1:4 (H:L)
+	//
+	//	=> nCYC = 25 (5 * 5)
+	//	=> fPWM = 640 [KHz]
+	//
 	const auto ledChain = this->ledChain();
 	const auto bufferSize = static_cast<uint16_t>( 3 * ledChain->numLeds() );
 	__attribute__((unused)) const auto bufferStart = ledChain->currentBufferBytes();
@@ -147,13 +156,13 @@ void LedChainImpl_PL9823::setR( unsigned led, uint8_t value ) {
 void LedChainImpl_PL9823::setG( unsigned led, uint8_t value ) {
 	const auto ledChain = this->ledChain();
 
-	*( ( ledChain->currentBufferBytes() + 3 * led ) + OFFSET_R ) = value;
+	*( ( ledChain->currentBufferBytes() + 3 * led ) + OFFSET_G ) = value;
 }
 
 void LedChainImpl_PL9823::setB( unsigned led, uint8_t value ) {
 	const auto ledChain = this->ledChain();
 
-	*( ( ledChain->currentBufferBytes() + 3 * led ) + OFFSET_R ) = value;
+	*( ( ledChain->currentBufferBytes() + 3 * led ) + OFFSET_B ) = value;
 }
 
 void LedChainImpl_PL9823::setRGB( unsigned led, uint32_t value ) {
