@@ -90,7 +90,16 @@ public:
 		return( this->_currentBufferBytes );
 	}
 
+	//
+	// Buffer handling
+	//
+
 	void setCurrentBuffer( unsigned buffer );
+	void copyBuffer( unsigned buffer );
+
+	//
+	// Implementation-specific
+	//
 
 	void flingCurrentBuffer() const;
 

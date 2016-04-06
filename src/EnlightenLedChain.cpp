@@ -54,6 +54,15 @@ void EnlightenLedChain::setCurrentBuffer( unsigned buffer ) {
 	this->UpdateCurrentBufferBytes();
 }
 
+void EnlightenLedChain::copyBuffer( unsigned buffer ) {
+	const auto srcBuffer = ( buffer < this->_numBuffers ? buffer : this->_numBuffers - 1 );
+	if( srcBuffer != this->_currentBuffer ) {
+		const auto bufferSize = 3 * this->_numLeds;
+		const uint8_t *srcBufferBytes = this->_bytes + ( srcBuffer * bufferSize );
+		::memcpy( this->_currentBufferBytes, srcBufferBytes, bufferSize );
+	}
+}
+
 void EnlightenLedChain::flingCurrentBuffer() const {
 	this->_impl->flingCurrentBuffer();
 }
