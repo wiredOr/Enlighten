@@ -31,7 +31,7 @@ EnlightenLedChain::EnlightenLedChain( LedType ledType, unsigned numLeds, unsigne
 	::memset( this->_bytes, 0, size );
 	this->UpdateCurrentBufferBytes();
 
-	// TODO: Construct LED chain implementation based on LED type
+	// Construct LED chain implementation based on LED type
 	if( this->_ledType == LedType::PL9823 ) {
 		this->_impl = new LedChainImpl_PL9823( this );
 	}

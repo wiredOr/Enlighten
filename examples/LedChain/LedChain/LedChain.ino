@@ -3,7 +3,7 @@
 
 #include <math.h>
 
-EnlightenLedChain chain( EnlightenLedChain::LedType::PL9823, 4 );
+EnlightenLedChain chain( EnlightenLedChain::LedType::WS2812B, 64 );
 
 void sparkle() {
   static float f1 = 0.0f, f2 = 0.0f;
@@ -26,11 +26,14 @@ void sparkle() {
 
 void setup() {
   delay(250);
+}
 
-  for( unsigned testLed = 0; testLed < 4; testLed++ ) {
+void loop() {
+
+  for( unsigned testLed = 0; testLed < chain.numLeds(); testLed++ ) {
     for( int color = 0; color < 3; color++ ) {
 
-      for( unsigned led = 0; led < 4; led++ ) {
+      for( unsigned led = 0; led < chain.numLeds(); led++ ) {
         if( led == testLed ) {
           switch( color ) {
             case 0: chain.setRGB( led, ENLIGHTEN_RGB( 255, 0, 0 ) ); break;
@@ -42,13 +45,11 @@ void setup() {
           chain.setRGB( led, 0 );
         }
       }
+      
       chain.flingCurrentBuffer();
-      delay(1000);
+      //delay(100);
       
     }
   }
-}
-
-void loop() {
-  sparkle();
+  
 }
