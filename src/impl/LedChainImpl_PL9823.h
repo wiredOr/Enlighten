@@ -29,6 +29,11 @@ public:
 	virtual void setB( unsigned led, uint8_t value ) override;
 	virtual	void setRGB( unsigned led, uint32_t value ) override;
 
+	virtual void setR( unsigned ledFrom, unsigned ledTo, uint8_t value ) override;
+	virtual void setG( unsigned ledFrom, unsigned ledTo, uint8_t value ) override;
+	virtual void setB( unsigned ledFrom, unsigned ledTo, uint8_t value ) override;
+	virtual void setRGB( unsigned ledFrom, unsigned ledTo, uint32_t value ) override;
+
 };
 
 #endif /* LEDCHAINIMPL_PL9823_H_ */

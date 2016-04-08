@@ -106,3 +106,27 @@ void EnlightenLedChain::setRGB( unsigned led, uint32_t value ) {
 		this->_impl->setRGB( led, value );
 	}
 }
+
+void EnlightenLedChain::setR( unsigned ledFrom, unsigned ledTo, uint8_t value ) {
+	if( (ledFrom < this->_numLeds) && (ledTo <= this->_numLeds) ) {
+		this->_impl->setR( ledFrom, ledTo, value );
+	}
+}
+
+void EnlightenLedChain::setG( unsigned ledFrom, unsigned ledTo, uint8_t value ) {
+	if( (ledFrom < this->_numLeds) && (ledTo <= this->_numLeds) ) {
+		this->_impl->setG( ledFrom, ledTo, value );
+	}
+}
+
+void EnlightenLedChain::setB( unsigned ledFrom, unsigned ledTo, uint8_t value ) {
+	if( (ledFrom < this->_numLeds) && (ledTo <= this->_numLeds) ) {
+		this->_impl->setB( ledFrom, ledTo, value );
+	}
+}
+
+void EnlightenLedChain::setRGB( unsigned ledFrom, unsigned ledTo, uint32_t value ) {
+	if( (ledFrom < this->_numLeds) && (ledTo <= this->_numLeds) ) {
+		this->_impl->setR( ledFrom, ledTo, value );
+	}
+}

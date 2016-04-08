@@ -173,3 +173,44 @@ void LedChainImpl_PL9823::setRGB( unsigned led, uint32_t value ) {
 	*(pixel + OFFSET_G) = ENLIGHTEN_G( value );
 	*(pixel + OFFSET_B) = ENLIGHTEN_B( value );
 }
+
+void LedChainImpl_PL9823::setR( unsigned ledFrom, unsigned ledTo, uint8_t value ) {
+	const auto ledChain = this->ledChain();
+
+	auto pixelFrom = ledChain->currentBufferBytes() + 3 * ledFrom;
+	for( auto led = ledFrom; led < ledTo; led++, pixelFrom++ ) {
+		*( pixelFrom + OFFSET_R ) = value;
+	}
+}
+
+void LedChainImpl_PL9823::setG( unsigned ledFrom, unsigned ledTo, uint8_t value ) {
+	const auto ledChain = this->ledChain();
+
+	auto pixelFrom = ledChain->currentBufferBytes() + 3 * ledFrom;
+	for( auto led = ledFrom; led < ledTo; led++, pixelFrom++ ) {
+		*( pixelFrom + OFFSET_G ) = value;
+	}
+}
+
+void LedChainImpl_PL9823::setB( unsigned ledFrom, unsigned ledTo, uint8_t value ) {
+	const auto ledChain = this->ledChain();
+
+	auto pixelFrom = ledChain->currentBufferBytes() + 3 * ledFrom;
+	for( auto led = ledFrom; led < ledTo; led++, pixelFrom++ ) {
+		*( pixelFrom + OFFSET_B ) = value;
+	}
+}
+
+void LedChainImpl_PL9823::setRGB( unsigned ledFrom, unsigned ledTo, uint32_t value ) {
+	const auto ledChain = this->ledChain();
+
+	auto pixelFrom = ledChain->currentBufferBytes() + 3 * ledFrom;
+	const uint8_t r = ENLIGHTEN_R( value );
+	const uint8_t g = ENLIGHTEN_R( value );
+	const uint8_t b = ENLIGHTEN_R( value );
+	for( auto led = ledFrom; led < ledTo; led++, pixelFrom++ ) {
+		*( pixelFrom + OFFSET_R ) = r;
+		*( pixelFrom + OFFSET_G ) = g;
+		*( pixelFrom + OFFSET_B ) = b;
+	}
+}

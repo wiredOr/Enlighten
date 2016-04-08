@@ -113,6 +113,11 @@ public:
 	void setB( unsigned led, uint8_t value );
 	void setRGB( unsigned led, uint32_t value );
 
+	void setR( unsigned ledFrom, unsigned ledTo, uint8_t value );
+	void setG( unsigned ledFrom, unsigned ledTo, uint8_t value );
+	void setB( unsigned ledFrom, unsigned ledTo, uint8_t value );
+	void setRGB( unsigned ledFrom, unsigned ledTo, uint32_t value );
+
 private:
 
 	void UpdateCurrentBufferBytes();

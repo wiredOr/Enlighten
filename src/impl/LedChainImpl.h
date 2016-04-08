@@ -32,6 +32,11 @@ public:
 	virtual void setB( unsigned led, uint8_t value ) = 0;
 	virtual	void setRGB( unsigned led, uint32_t value ) = 0;
 
+	virtual void setR( unsigned ledFrom, unsigned ledTo, uint8_t value ) = 0;
+	virtual void setG( unsigned ledFrom, unsigned ledTo, uint8_t value ) = 0;
+	virtual void setB( unsigned ledFrom, unsigned ledTo, uint8_t value ) = 0;
+	virtual void setRGB( unsigned ledFrom, unsigned ledTo, uint32_t value ) = 0;
+
 protected:
 
 	const EnlightenLedChain *ledChain() const {
