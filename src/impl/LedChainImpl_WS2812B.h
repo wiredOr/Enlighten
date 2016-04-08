@@ -12,27 +12,13 @@
 
 #include "LedChainImpl.h"
 
-class LedChainImpl_WS2812B : public LedChainImpl {
+class LedChainImpl_WS2812B : public LedChainImpl<1, 0, 2> {
 
 public:
 
 	LedChainImpl_WS2812B( EnlightenLedChain* ledChain );
 
-	virtual void flingCurrentBuffer() const override;
-	virtual uint8_t r( unsigned led ) const override;
-	virtual uint8_t g( unsigned led ) const override;
-	virtual uint8_t b( unsigned led ) const override;
-	virtual	uint32_t rgb( unsigned led ) const override;
-
-	virtual void setR( unsigned led, uint8_t value ) override;
-	virtual void setG( unsigned led, uint8_t value ) override;
-	virtual void setB( unsigned led, uint8_t value ) override;
-	virtual	void setRGB( unsigned led, uint32_t value ) override;
-
-	virtual void setR( unsigned ledFrom, unsigned ledTo, uint8_t value ) override;
-	virtual void setG( unsigned ledFrom, unsigned ledTo, uint8_t value ) override;
-	virtual void setB( unsigned ledFrom, unsigned ledTo, uint8_t value ) override;
-	virtual void setRGB( unsigned ledFrom, unsigned ledTo, uint32_t value ) override;
+	void flingCurrentBuffer() const override;
 
 };
 

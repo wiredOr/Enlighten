@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "EnlightenLedChain.h"
+#include "impl/LedChainImplBase.h"
 #include "impl/LedChainImpl.h"
 #include "impl/LedChainImpl_PL9823.h"
 #include "impl/LedChainImpl_WS2812B.h"

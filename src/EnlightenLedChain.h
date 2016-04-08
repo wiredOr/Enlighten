@@ -32,7 +32,7 @@
  		| static_cast<uint32_t>( b ) 		\
  	)
 
-class LedChainImpl;
+class LedChainImplBase;
 
 class EnlightenLedChain {
 
@@ -128,7 +128,7 @@ private:
 	unsigned _currentBuffer;
 	uint8_t *_bytes;
 	uint8_t *_currentBufferBytes;
-	LedChainImpl *_impl;
+	LedChainImplBase *_impl;
 };
 
 #endif /* ENLIGHTENLEDCHAIN_H_ */
