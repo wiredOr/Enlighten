@@ -1,17 +1,13 @@
 /*
- * LedChainImpl_WS2812B.cpp
+ * EnlightenLedChain_WS2812B.cpp
  *
  *  Created on: 16.03.2016
  *      Author: awurf
  */
 
-#include "LedChainImpl_WS2812B.h"
+#include "EnlightenLedChain_WS2812B.h"
 
-LedChainImpl_WS2812B::LedChainImpl_WS2812B( EnlightenLedChain* ledChain )
-: LedChainImpl( ledChain )
-{ }
-
-void LedChainImpl_WS2812B::flingCurrentBuffer() const {
+void EnlightenLedChain_WS2812B::flingCurrentBuffer() const {
 	//
 	//	fCPU = 16e6 [Hz] (Arduino Micro)
 	//	tH + tL = 1.25 [us] +/- 600 [ns] // see WS2812B datasheet
@@ -23,9 +19,8 @@ void LedChainImpl_WS2812B::flingCurrentBuffer() const {
 	//	=> nCYC = 15 (3 * 5) (chosen)
 	//	=> fPWM = 1.067 [MHz]
 	//
-	const auto ledChain = this->ledChain();
-	const auto bufferSize = static_cast<uint16_t>( 3 * ledChain->numLeds() );
-	__attribute__((unused)) const auto bufferStart = ledChain->currentBufferBytes();
+	const auto bufferSize = static_cast<uint16_t>( 3 * this->numLeds() );
+	__attribute__((unused)) const auto bufferStart = this->currentBufferBytes();
 	__attribute__((unused)) uint8_t sreg, mask, byte;
 
 	asm volatile(

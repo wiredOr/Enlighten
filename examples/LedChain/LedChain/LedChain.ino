@@ -1,9 +1,9 @@
 #include <EnlightenBT.h>
-#include <EnlightenLedChain.h>
+#include <EnlightenLedChain_WS2812B.h>
 
 #include <math.h>
 
-EnlightenLedChain chain( EnlightenLedChain::LedType::WS2812B, 64 );
+EnlightenLedChain_WS2812B chain( 64 );
 
 void sparkle() {
   static float f1 = 0.0f, f2 = 0.0f;
@@ -47,7 +47,7 @@ void loop() {
       }
       
       chain.flingCurrentBuffer();
-      //delay(100);
+      //delay(333);
       
     }
   }

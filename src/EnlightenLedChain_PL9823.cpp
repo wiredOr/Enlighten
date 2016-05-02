@@ -1,17 +1,13 @@
 /*
- * LedChainImpl_PL9823.cpp
+ * EnlightenLedChain_PL9823.cpp
  *
  *  Created on: 16.03.2016
  *      Author: awurf
  */
 
-#include "LedChainImpl_PL9823.h"
+#include "EnlightenLedChain_PL9823.h"
 
-LedChainImpl_PL9823::LedChainImpl_PL9823( EnlightenLedChain* ledChain )
-: LedChainImpl( ledChain )
-{ }
-
-void LedChainImpl_PL9823::flingCurrentBuffer() const {
+void EnlightenLedChain_PL9823::flingCurrentBuffer() const {
 	//
 	//	fCPU = 16e6 [Hz] (Arduino Micro)
 	//	fPWM_MAX = 714e3 [Hz]
@@ -22,9 +18,8 @@ void LedChainImpl_PL9823::flingCurrentBuffer() const {
 	//	=> nCYC = 25 (5 * 5)
 	//	=> fPWM = 640 [KHz]
 	//
-	const auto ledChain = this->ledChain();
-	const auto bufferSize = static_cast<uint16_t>( 3 * ledChain->numLeds() );
-	__attribute__((unused)) const auto bufferStart = ledChain->currentBufferBytes();
+	const auto bufferSize = static_cast<uint16_t>( 3 * this->numLeds() );
+	__attribute__((unused)) const auto bufferStart = this->currentBufferBytes();
 	__attribute__((unused)) uint8_t sreg, mask, byte;
 
 	asm volatile(
